@@ -13,8 +13,8 @@ var FormView = {
     // input type="text" name="message" id="message"
     // console.log(this.$form);
     var messageText = this.$form[0].children[0].value; // is there a better way of getting this?
-    var message = new Messages(App.username, messageText, 'viewall');
     // make POST request
+    var message = {username: App.username, text: messageText, roomname: 'viewall'};
     Parse.create(message, function() { console.log('Sent: ' + messageText); });
   },
 
