@@ -3,14 +3,19 @@ var FormView = {
   $form: $('form'),
 
   initialize: function() {
-    FormView.$form.on('submit', FormView.handleSubmit);
+    FormView.$form.on('submit', FormView.handleSubmit.bind(this));
   },
 
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
 
-    console.log('click!');
+    // input type="text" name="message" id="message"
+    // console.log(this.$form);
+    var messageText = this.$form[0].children[0].value; // is there a better way of getting this?
+    var message = new Messages(App.username, messageText, 'viewall');
+    // make POST request
+    Parse.create(message, function() { console.log('Sent: ' + messageText); });
   },
 
   setStatus: function(active) {
