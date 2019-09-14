@@ -13,6 +13,10 @@ var RoomsView = {
 
   handleClick: function() {
     var roomname = prompt('Please enter the name of your new room');
+    this.addRoom(roomname);
+  },
+
+  addRoom: function(roomname) {
     if (roomname) {
       if (!App.rooms.roomExists(roomname)) {
         App.rooms.addRoom(roomname);
@@ -20,4 +24,5 @@ var RoomsView = {
       }
     }
   }
+
 };

@@ -5,7 +5,9 @@ class Rooms {
   }
 
   addRoom (roomname) {
-    this.rooms.push(roomname);
+    if (roomname !== undefined && roomname !== '') {
+      this.rooms.push(roomname);
+    }
     console.log(this.rooms);
   }
   roomExists (roomname) {

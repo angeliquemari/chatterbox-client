@@ -20,7 +20,7 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      MessagesView.render(data); // render retrieved messages
+      MessagesView.render(data.results); // render retrieved messages
       callback(); // stops spinner
     });
   },
