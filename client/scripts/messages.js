@@ -1,6 +1,13 @@
-var Messages = {
-// array of saved messages
-};
+class Messages {
 
-// method to get time of last message
-// method to add message to the storage - it checks time of message and
+  constructor () {
+    this.messages = {};
+  }
+
+  addMessage(message) {
+    this.messages[message.objectId] = message;
+    // console.log(this.messages);
+  }
+}
+
+// method to get time of last message?

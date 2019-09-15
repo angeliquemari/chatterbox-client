@@ -6,9 +6,16 @@ var RoomsView = {
   initialize: function() {
     App.rooms = new Rooms();
     RoomsView.$button.on('click', RoomsView.handleClick.bind(this));
+    RoomsView.$select.on('change', RoomsView.render.bind(this));
   },
 
   render: function() {
+    var selectedRoom = $('#rooms select :selected').val();
+    var roomMessages = App.rooms.rooms[selectedRoom];
+    MessagesView.clearMessages();
+    roomMessages.forEach(function(message) {
+      MessagesView.renderMessage(message);
+    });
   },
 
   handleClick: function() {

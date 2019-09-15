@@ -3,6 +3,11 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
+    App.messages = new Messages();
+  },
+
+  clearMessages: function() {
+    this.$chats.empty();
   },
 
   renderMessage: function(chat) {
@@ -11,19 +16,14 @@ var MessagesView = {
   },
 
   render: function(data) {
-    // loop through chats (results array), for each, call messageView.render
-    // to generate html snippet with info about specific chat, append to view
     console.log(data);
     for (var i = 0; i < data.length; i++) {
       var chat = data[i];
-      // if (!App.rooms.roomExists(chat.roomname)) {
-      //   App.rooms.addRoom(chat.roomname);
-        // App.roomsView.$select.append(`<option value="${chat.roomname}">${chat.roomname}</option>`);
-      // }
       RoomsView.addRoom(chat.roomname);
-      // check if room exists, if it doesn't, add new room
-      // add room to rooms object
-      // add room to drop down
+      // (if new) add message to messages storage
+      App.messages.addMessage(chat);
+      // add message to rooms storage
+      App.rooms.addMessageToRoom(chat, chat.roomname);
       this.renderMessage(chat);
     }
   }
